@@ -115,17 +115,6 @@
                     <includes>
                         <include>**/*TestRunner.java</include>
                     </includes>
-                    <!-- Parallel execution configuration -->
-                    <parallel>methods</parallel>
-                    <threadCount>4</threadCount>
-                    <perCoreThreadCount>true</perCoreThreadCount>
-                    <properties>
-                        <configurationParameters>
-                            cucumber.execution.parallel.enabled=true
-                            cucumber.execution.parallel.config.strategy=dynamic
-                            cucumber.execution.parallel.config.dynamic.factor=1.0
-                        </configurationParameters>
-                    </properties>
                 </configuration>
             </plugin>
         </plugins>
