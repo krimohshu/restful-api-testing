@@ -17,13 +17,22 @@ public class WhenSteps {
     
     @When("the request to add the item is made")
     public void theRequestToAddTheItemIsMade() {
+        System.out.println("🔍 DEBUG: Making POST request to create object");
+        System.out.println("🔍 DEBUG: Object data: " + context.getCurrentObject());
+        
         Response response = context.getApiClient().createObject(context.getCurrentObject());
         context.setCurrentResponse(response);
+        
+        System.out.println("📥 DEBUG: Response Status Code: " + response.getStatusCode());
+        System.out.println("📥 DEBUG: Response Body: " + response.getBody().asString());
         
         // If creation was successful, store the ID for cleanup
         if (response.getStatusCode() == 200) {
             String id = response.path("id");
             context.addCreatedObjectId(id);
+            System.out.println("✅ DEBUG: Object created successfully with ID: " + id);
+        } else {
+            System.out.println("❌ DEBUG: Object creation failed!");
         }
     }
     

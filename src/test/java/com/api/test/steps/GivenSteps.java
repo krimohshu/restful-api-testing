@@ -19,13 +19,17 @@ public class GivenSteps {
     
     @Given("the API base URL is {string}")
     public void theApiBaseUrlIs(String baseUrl) {
+        System.out.println("🔍 DEBUG: Setting API base URL to: " + baseUrl);
         context.setApiClient(new com.api.test.client.RestApiClient(baseUrl));
+        System.out.println("✅ DEBUG: API client initialized successfully");
     }
     
     @Given("a {string} item is created")
     public void anItemIsCreated(String itemName) {
+        System.out.println("🔍 DEBUG: Creating item with name: " + itemName);
         ApiObject apiObject = new ApiObject(itemName);
         context.setCurrentObject(apiObject);
+        System.out.println("✅ DEBUG: Item object created and stored in context");
     }
     
     @Given("is a {string} CPU model")
@@ -35,8 +39,10 @@ public class GivenSteps {
     
     @Given("has a price of {string}")
     public void hasAPriceOf(String price) {
+        System.out.println("🔍 DEBUG: Setting price to: " + price);
         double priceValue = Double.parseDouble(price);
         context.getCurrentObject().addDataAttribute("price", priceValue);
+        System.out.println("✅ DEBUG: Price added to object data");
     }
     
     @Given("has the following attributes:")

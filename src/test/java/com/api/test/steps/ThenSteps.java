@@ -21,6 +21,17 @@ public class ThenSteps {
     @Then("a {int} response code is returned")
     public void aResponseCodeIsReturned(int expectedStatusCode) {
         int actualStatusCode = context.getCurrentResponse().getStatusCode();
+        System.out.println("🔍 DEBUG: Verifying status code");
+        System.out.println("   Expected: " + expectedStatusCode);
+        System.out.println("   Actual: " + actualStatusCode);
+        
+        if (actualStatusCode != expectedStatusCode) {
+            System.out.println("❌ DEBUG: Status code mismatch!");
+            System.out.println("   Response body: " + context.getCurrentResponse().getBody().asString());
+        } else {
+            System.out.println("✅ DEBUG: Status code matches!");
+        }
+        
         assertThat("Response status code should be " + expectedStatusCode,
                 actualStatusCode, equalTo(expectedStatusCode));
     }
